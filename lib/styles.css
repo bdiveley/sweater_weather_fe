@@ -54,3 +54,13 @@ li .nav {
   border: none;
   border-radius: 40px;
 }
+
+#logout-btn:hover {
+  background-color: #b0228c;
+}
+
+.sweater {
+  padding: 100px;
+  top: 50%;
+  left: 50%;
+}
