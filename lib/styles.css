@@ -68,9 +68,26 @@ button:hover {
   font-size: 50px;
 }
 
+#forecast {
+  width: 50%;
+  opacity: 0.8;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 20px;
+}
+
 #location, #locationbutton {
   font-size: 50px;
   margin: 10px;
   width: 700px;
   text-align: center;
+}
+
+#location {
+  background-color: white;
+}
+
+.icon {
+  width: 200px;
+  height: auto;
 }
