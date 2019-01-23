@@ -47,7 +47,7 @@ li .nav {
   padding : 0px 10px 10px 0;
 }
 
-#logout-btn {
+button {
   background-color: #00798c;
   font-size: 20px;
   text-decoration: none;
@@ -55,12 +55,10 @@ li .nav {
   border-radius: 40px;
 }
 
-#logout-btn:hover {
+button:hover {
   background-color: #b0228c;
 }
 
 .sweater {
   padding: 100px;
-  top: 50%;
-  left: 50%;
 }
