@@ -1,0 +1,56 @@
+body {
+  background-color: #D3D3D3;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding : 0px 0 10px 0;
+  overflow: hidden;
+  background-color: #00798c;
+  height: 50px;
+}
+
+li {
+  margin: 0px;
+  padding : 10px 0 10px 0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+li .nav {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+#main {
+  background-color: #b0228c;
+  font-size: 100px;
+  color: white;
+}
+
+#slogan {
+  float: left;
+  color: #13293d;
+  font-size: 30px;
+  font-style: italic;
+  padding : 10px 20px 10px 0;
+}
+
+#user {
+  color: #13293d;
+  font-size: 20px;
+  color: white;
+  padding : 0px 10px 10px 0;
+}
+
+#logout-btn {
+  background-color: #00798c;
+  font-size: 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 40px;
+}
