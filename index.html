@@ -7,7 +7,7 @@
 <body>
     <div id="main" class="nav">
       Sweater Weather
-      <a href="https://dumielauxepices.net/wallpaper-3666009"><img class="img img-responsive" typeof="foaf:Image" src="https://dumielauxepices.net/sites/default/files/clouds-clipart-simple-895336-3697499.png" width="100px" height="auto" alt="Clouds Clipart simple 13 - 300 X 159" title="Clouds Clipart simple 13 - 300 X 159" /></a>
+      <img  src="https://dumielauxepices.net/sites/default/files/clouds-clipart-simple-895336-3697499.png" width="100px" height="auto"/>
     </div>
   <ul>
     <li id="slogan" class="nav">your favoritest forecast friend</li>
@@ -16,8 +16,10 @@
     <button id="login-btn" class="nav" onclick="fullLogIn()">Log In</button></li>
     </div>
   </ul>
-  <div>
-    <img id="display" class="sweater"  src="gray-sweater.png" alt="Sweater">
+  <div id="display">
+    <img class="sweater" onclick="fullLogIn()"  src="gray-sweater.png" alt="Sweater">
+  </div>
+  <div id="forecast">
   </div>
   <script
     src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
