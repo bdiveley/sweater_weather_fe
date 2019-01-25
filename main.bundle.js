@@ -53,6 +53,7 @@
 	}
 
 	function fullLogOut() {
+	  clearFavoriteButton();
 	  setSweaterDisplay();
 	  setLogOut();
 	  clearForecast();
@@ -60,13 +61,43 @@
 	}
 
 	function getFavoriteForecast() {
-	  var q = document.getElementById("favorites-list").value;
-	  getForecastData(q);
+	  var favorite = document.getElementById("favorites-list").value;
+	  clearFavoriteButton();
+	  getForecastData(favorite);
 	}
 
 	function getForecast() {
-	  var q = document.getElementById("location").value;
-	  getForecastData(q);
+	  var locale = getSearchLocation();
+	  displayForecastButtons();
+	  getForecastData(locale);
+	}
+
+	function getSearchLocation() {
+	  return document.getElementById("location").value.replace(/\s/g, '');
+	}
+
+	function displayForecastButtons() {
+	  document.getElementById("favorite").innerHTML = "<button id='fave-button' onclick='postNewFavorite()'>Add to Favorites</button>";
+	}
+
+	function postNewFavorite() {
+	  var q = getSearchLocation();
+	  var xhr = new XMLHttpRequest();
+	  var url = "https://thawing-basin-85011.herokuapp.com/api/v1/favorites?api_key=" + config.apiKey + "&location=" + q;
+	  xhr.open("POST", url, true);
+	  xhr.onload = function () {
+	    if (this.status == 200) {
+	      var data = JSON.parse(this.responseText);
+	      removeFavoriteButton();
+	      getFavorites();
+	      alert(q + " is added to your favorites list");
+	    }
+	  };
+	  xhr.send();
+	}
+
+	function removeFavoriteButton() {
+	  document.getElementById("favorite").innerHTML = "";
 	}
 
 	function getFavorites() {
@@ -138,6 +169,10 @@
 
 	function clearForecast() {
 	  document.getElementById("forecast").innerHTML = "";
+	}
+
+	function clearFavoriteButton() {
+	  document.getElementById("favorite").innerHTML = "";
 	}
 
 	function clearSearch() {
