@@ -71,6 +71,10 @@
 	  sessionStorage.setItem('api_key', "" + data.data.attributes.api_key);
 	}
 
+	function deleteKey() {
+	  sessionStorage.clear();
+	}
+
 	function displaySearch() {
 	  document.getElementById("display").innerHTML = "<input id='location' type='text' placeholder='Type any location: Denver, CO'> <br> <button id='locationbutton' class='button' onclick='getForecast()'>Find Weather</button><br>";
 	}
@@ -185,6 +189,7 @@
 	function fullLogOut() {
 	  clearContents(["favorite", "forecast", "loaded-favorites"]);
 	  setSweaterDisplay();
+	  deleteKey();
 	  setLogOut();
 	  rotateImage();
 	}
