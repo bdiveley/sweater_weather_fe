@@ -48,8 +48,9 @@
 
 	function fullLogIn() {
 	  setLogIn();
-	  rotateImage();
-	  setTimeout(getFavorites, 500);
+	  rotateImage(1800);
+	  getFavorites();
+	  setTimeout(displaySearch, 1500);
 	}
 
 	function fullLogOut() {
@@ -58,6 +59,10 @@
 	  setLogOut();
 	  clearForecast();
 	  rotateImage();
+	}
+
+	function displaySearch() {
+	  document.getElementById("display").innerHTML = "<input id='location' type='text' placeholder='Type any location: Denver, CO'> <br> <button id='locationbutton' class='button' onclick='getForecast()'>Find Weather</button><br>";
 	}
 
 	function getFavoriteForecast() {
@@ -144,7 +149,7 @@
 	}
 
 	function displayFavorites(contents) {
-	  document.getElementById("display").innerHTML = "<input id='location' type='text' placeholder='Type any location: Denver, CO'> <br> <button id='locationbutton' class='button' onclick='getForecast()'>Find Weather</button><br> <select id='favorites-list'> " + contents + "</select><br> <button id='favoritebutton' class='button' onclick='getFavoriteForecast()'>Select Favoritest Location</button>";
+	  document.getElementById("display").innerHTML += "<select id='favorites-list'> " + contents + "</select><br> <button id='favoritebutton' class='button' onclick='getFavoriteForecast()'>Select Favoritest Location</button>";
 	}
 
 	function formatForecast(data) {
@@ -179,8 +184,8 @@
 	  document.getElementById("location").value = "";
 	}
 
-	function rotateImage() {
-	  $('.sweater').animate({ transform: 360 }, {
+	function rotateImage(degrees) {
+	  $('.sweater').animate({ transform: degrees }, {
 	    step: function step(now, fx) {
 	      $(this).css({
 	        '-webkit-transform': 'rotate(' + now + 'deg)',
