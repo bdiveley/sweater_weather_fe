@@ -97,3 +97,17 @@ div#forecast {
   width: 200px;
   height: auto;
 }
+
+#forecast-buttons {
+  text-align: center;
+  margin: 20px auto;
+}
+
+#fave-button {
+  width: 200px;
+  #b0228c;
+}
+
+#fave-button:hover {
+  transform: perspective(1px) translateZ(0);
+}
