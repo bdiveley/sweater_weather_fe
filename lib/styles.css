@@ -98,7 +98,7 @@ div#forecast {
   height: auto;
 }
 
-#forecast-buttons {
+#forecast-buttons, #loaded-favorites {
   text-align: center;
   margin: 20px auto;
 }
