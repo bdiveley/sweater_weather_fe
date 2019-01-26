@@ -76,7 +76,7 @@ div#forecast {
   font-size: 20px;
 }
 
-#location, #locationbutton, #favorites-list, #favoritebutton {
+#location, #locationbutton, #favorites-list, #favoritebutton, #login-button, #email, #password {
   font-size: 40px;
   margin: 20px auto;
   width: 700px;
@@ -105,10 +105,5 @@ div#forecast {
 
 #fave-button {
   width: 200px;
-  margin: 10px;
   #b0228c;
-}
-
-#fave-button:hover {
-  transform: perspective(1px) translateZ(0);
 }
