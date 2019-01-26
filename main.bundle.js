@@ -46,31 +46,50 @@
 
 	"use strict";
 
-	function fullLogIn() {
-	  logIn();
-	  setLogIn();
-	  rotateImage(1080);
-	  setTimeout(getFavorites, 1500);
-	  setTimeout(displaySearch, 1500);
-	  setTimeout(displayForecastButtons, 1500);
+	function displayLogin() {
+	  clearContents(["favorite", "forecast", "email", "loaded-favorites"]);
+	  deleteSession();
+	  document.getElementById("display").innerHTML = "<input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <button id='login-button' class='button' onclick='fullLogIn()'>Log In</button><br>";
 	}
 
-	function logIn() {
+	function visitorLogin() {
+	  displaySearch();
+	}
+
+	function fullLogIn() {
+	  var email = getValue("email");
+	  var password = getValue("password");
+	  displaySearch();
+	  logIn(email, password);
+	}
+
+	function logIn(email, password) {
 	  var xhr = new XMLHttpRequest();
-	  var url = "https://thawing-basin-85011.herokuapp.com/api/v1/sessions?email=bailey.diveley@gmail.com&password=test";
+	  var url = "https://thawing-basin-85011.herokuapp.com/api/v1/sessions?email=" + email + "&password=" + password;
 	  xhr.open("POST", url, true);
 	  xhr.onload = function () {
 	    if (this.status == 200) {
 	      var data = JSON.parse(this.responseText);
-	      storeKey(data);
+	      storeSession(data, email, function () {
+	        setLogIn(email, function () {
+	          getFavorites(function () {
+	            displayForecastButtons();
+	          });
+	        });
+	      });
 	    }
 	  };
 	  xhr.send();
 	}
 
+	function setLogIn(email, callback) {
+	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome, " + email + "! <button id='logout-btn' class='nav' onclick='fullLogOut()'>Log Out</button></li>";
+	  callback();
+	}
+
 	function sendEmail() {
 	  var xhr = new XMLHttpRequest();
-	  var url = "https://thawing-basin-85011.herokuapp.com/mailers?email=bailey.diveley@gmail.com&location=" + currentLocation.location;
+	  var url = "https://thawing-basin-85011.herokuapp.com/mailers?email=" + sessionStorage.getItem('email') + "&location=" + currentLocation.location;
 	  xhr.open("POST", url, true);
 	  xhr.onload = function () {
 	    if (this.status == 200) {
@@ -80,11 +99,13 @@
 	  xhr.send();
 	}
 
-	function storeKey(data) {
+	function storeSession(data, email, callback) {
 	  sessionStorage.setItem('api_key', "" + data.data.attributes.api_key);
+	  sessionStorage.setItem('email', "" + email);
+	  callback();
 	}
 
-	function deleteKey() {
+	function deleteSession() {
 	  sessionStorage.clear();
 	}
 
@@ -93,24 +114,26 @@
 	}
 
 	function getFavoriteForecast() {
-	  currentLocation.location = getSearchLocation("favorites-list");
+	  currentLocation.location = getValue("favorites-list");
 	  clearContents(["favorite"]);
 	  getForecastData();
 	}
 
 	function getForecast() {
-	  currentLocation.location = getSearchLocation("location");
+	  currentLocation.location = getValue("location");
 	  displayForecastButtons();
 	  getForecastData();
 	}
 
-	function getSearchLocation(element) {
+	function getValue(element) {
 	  return document.getElementById(element).value;
 	}
 
 	function displayForecastButtons() {
-	  document.getElementById("favorite").innerHTML = "<button id='fave-button' onclick='postNewFavorite()'>Add to Favorites</button>";
-	  document.getElementById("email").innerHTML = "<button id='email-button' onclick='sendEmail()'>Email My Forecast</button>";
+	  if (sessionStorage.getItem('email')) {
+	    document.getElementById("favorite").innerHTML = "<button id='fave-button' onclick='postNewFavorite()'>Add to Favorites</button>";
+	    document.getElementById("email").innerHTML = "<button id='email-button' onclick='sendEmail()'>Email My Forecast</button>";
+	  }
 	}
 
 	function postNewFavorite() {
@@ -132,7 +155,7 @@
 	  document.getElementById("favorite").innerHTML = "";
 	}
 
-	function getFavorites() {
+	function getFavorites(callback) {
 	  var xhr = new XMLHttpRequest();
 	  var url = "https://thawing-basin-85011.herokuapp.com/favorites?api_key=" + sessionStorage.getItem('api_key');
 	  xhr.open("GET", url, true);
@@ -140,6 +163,7 @@
 	    if (this.status == 200) {
 	      var data = JSON.parse(this.responseText);
 	      formatFavorites(data);
+	      callback();
 	    }
 	  };
 	  xhr.send();
@@ -191,24 +215,19 @@
 	  document.getElementById("forecast").innerHTML = "<h1>" + forecast.location + "</h1>\n  <h2>Current Weather: " + currentDay.summary + "</h2>\n  <img class='icon' src=" + currentDay.icon + ".png>";
 	}
 
-	function setLogIn() {
-	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome, bailey.diveley! <button id='logout-btn' class='nav' onclick='fullLogOut()'>Log Out</button></li>";
-	}
-
 	function setLogOut() {
-	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome! <button id='logout-btn' class='nav' onclick='fullLogIn()'>Log In</button></li>";
+	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome <button id='logout-btn' class='nav' onclick='fullLogIn()'>Log In</button></li>";
 	}
 
 	function setSweaterDisplay() {
-	  document.getElementById("display").innerHTML = "<img class='sweater' onclick='fullLogIn()'  src='gray-sweater.png' alt='Sweater'/>";
+	  document.getElementById("display").innerHTML = "<img class='sweater' onclick='visitorLogin()'  src='gray-sweater.png' alt='Sweater'/>";
 	}
 
 	function fullLogOut() {
 	  clearContents(["favorite", "forecast", "email", "loaded-favorites"]);
 	  setSweaterDisplay();
-	  deleteKey();
+	  deleteSession();
 	  setLogOut();
-	  rotateImage();
 	}
 
 	function clearContents(tags) {
@@ -219,18 +238,6 @@
 
 	function clearSearch() {
 	  document.getElementById("location").value = "";
-	}
-
-	function rotateImage(degrees) {
-	  $('.sweater').animate({ transform: degrees }, {
-	    step: function step(now, fx) {
-	      $(this).css({
-	        '-webkit-transform': 'rotate(' + now + 'deg)',
-	        '-moz-transform': 'rotate(' + now + 'deg)',
-	        'transform': 'rotate(' + now + 'deg)'
-	      });
-	    }
-	  });
 	}
 
 /***/ })
