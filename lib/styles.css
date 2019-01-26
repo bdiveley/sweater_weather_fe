@@ -107,7 +107,3 @@ div#forecast {
   width: 200px;
   #b0228c;
 }
-
-#fave-button:hover {
-  transform: perspective(1px) translateZ(0);
-}
