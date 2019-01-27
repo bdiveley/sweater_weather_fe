@@ -76,6 +76,10 @@ button:hover {
   display: none;
 }
 
+.show {
+  display: grid;
+}
+
 div#sweater-display {
   padding: 5px;
   opacity: 0.8;
