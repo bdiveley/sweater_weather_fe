@@ -13,11 +13,16 @@
   <ul>
     <li id="slogan" class="nav">your favorite forecast friend</li>
     <div style="float:right">
-    <li id="user">
-      <h4 class="nav" onclick="logOut()">Home<h4>
-      <button id="login-btn" class="nav" onclick="displayLogin()">Log In</button>
-      <button id="register-btn" class="nav" onclick="displayRegister()">Register</button>
-    </li>
+      <li id="user-login">
+        <h4 class="nav" onclick="logOut()">Home<h4>
+        <button id="login-btn" class="nav" onclick="displayLogin()">Log In</button>
+        <button id="register-btn" class="nav" onclick="displayRegister()">Register</button>
+      </li>
+
+      <li id='user-logout' class="hidden">
+        <h5> Welcome! </h5>
+        <button id='logout-btn' class='nav' onclick='logOut()'>Log Out</button>
+      </li>
     </div>
   </ul>
 
