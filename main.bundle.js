@@ -49,7 +49,7 @@
 	function displayLogin() {
 	  clearContents(["favorite", "forecast", "email", "loaded-favorites"]);
 	  deleteSession();
-	  document.getElementById("display").innerHTML = "<input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <button id='login-button' class='button' onclick='fullLogIn()'>Log In</button><br>";
+	  document.getElementById("display").innerHTML = "<input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <button id='login-button' class='button' onclick='fullLogIn()'>Log In</button>";
 	}
 
 	function visitorLogin() {
@@ -204,7 +204,7 @@
 	}
 
 	function displayFavorites(contents) {
-	  document.getElementById("loaded-favorites").innerHTML = "<select id='favorites-list'> " + contents + "</select><br> <button id='favoritebutton' class='button' onclick='getFavoriteForecast()'>Select Favoritest Location</button>";
+	  document.getElementById("loaded-favorites").innerHTML = "<select id='favorites-list'> " + contents + "</select><br> <button id='favoritebutton' class='button' onclick='getFavoriteForecast()'>Select Favorite Location</button>";
 	}
 
 	function formatForecast(data) {
@@ -216,7 +216,7 @@
 	}
 
 	function setLogOut() {
-	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome <button id='logout-btn' class='nav' onclick='fullLogIn()'>Log In</button></li>";
+	  document.getElementById("user").innerHTML = "<li id='user'><h4 class='nav' onclick='fullLogOut()'>Welcome<h4><button id='login-btn' class='nav' onclick='displayLogin()'>Log In</button><button id='register-btn' class='nav' onclick='displayRegister()'>Register</button></li>";
 	}
 
 	function setSweaterDisplay() {
@@ -238,6 +238,16 @@
 
 	function clearSearch() {
 	  document.getElementById("location").value = "";
+	}
+
+	function displayRegister() {
+	  clearContents(["favorite", "forecast", "email", "loaded-favorites"]);
+	  deleteSession();
+	  document.getElementById("display").innerHTML = "<input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <input id='password-conf' type='text' placeholder='Password Confirmation'> <button id='login-button' class='button' onclick='createUser()'>Log In</button><br>";
+	}
+
+	function createUser() {
+	  //add request to post new user
 	}
 
 /***/ })
