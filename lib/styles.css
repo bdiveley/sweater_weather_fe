@@ -16,11 +16,6 @@ ul {
   text-align: left;
 }
 
-li {
-  margin: 0px;
-  padding : 0px 0 0px 0;
-}
-
 li.nav {
   display: block;
   color: white;
@@ -30,6 +25,8 @@ li.nav {
 
 h4.nav {
   text-align: right;
+  padding : 10px 10px 10px 10px;
+
 }
 
 h4.nav:hover {
@@ -51,7 +48,7 @@ h1, h2 {
   color: #13293d;
   font-size: 30px;
   font-style: italic;
-  padding : 10px 20px 10px 0;
+  padding : 10px 20px 10px 10px;
 }
 
 #user {
