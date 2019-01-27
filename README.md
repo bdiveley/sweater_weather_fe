@@ -7,7 +7,12 @@ https://github.com/bdiveley/sweater_weather_fe/projects/1
 https://bdiveley.github.io/sweater_weather_fe/
 
 # Inspiration
+Wunderground:
 ![alt text](/assets/wunderground.png)
+
+Google Weather:
+![alt text](/assets/google.png)
+
 
 # Wireframes
 * General Page Overview, including nav bar
