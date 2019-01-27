@@ -7,15 +7,15 @@ https://github.com/bdiveley/sweater_weather_fe/projects/1
 https://bdiveley.github.io/sweater_weather_fe/
 
 # Inspiration
-![alt text](wunderground.png)
+![alt text](/assets/wunderground.png)
 
 # Wireframes
 * General Page Overview, including nav bar
-![alt text](wireframe.png)
+![alt text](/assets/wireframe.png)
 * Forecast Section Overview
-![alt text](forecast_image.png)
+![alt text](/assets/forecast_image.png)
 * Color Palette
-![alt text](palette.png)
+![alt text](/assets/palette.png)
 
 # Built With
 * JavaScript
