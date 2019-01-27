@@ -12,19 +12,24 @@ ul {
   padding : 0px 0 10px 0;
   overflow: hidden;
   background-color: #00798c;
-  height: 50px;
+  height: 120px;
+  text-align: left;
 }
 
 li {
   margin: 0px;
-  padding : 10px 0 10px 0;
+  padding : 0px 0 0px 0;
 }
 
-li .nav {
+li.nav {
   display: block;
   color: white;
-  text-align: center;
-  padding: 14px 16px;
+  text-align: left;
+  padding: 10px 10px;
+}
+
+h4.nav {
+  text-align: right;
 }
 
 #main {
@@ -76,7 +81,7 @@ div#forecast {
   font-size: 20px;
 }
 
-#location, #locationbutton, #favorites-list, #favoritebutton, #login-button, #email, #password {
+#location, #locationbutton, #favorites-list, #favoritebutton, #login-button, #email, #password, #password-conf {
   font-size: 40px;
   margin: 20px auto;
   width: 700px;

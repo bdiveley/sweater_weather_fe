@@ -5,16 +5,19 @@
   <link rel="stylesheet" type="text/css" href="lib/styles.css">
 </head>
 <body>
-  <div id="main" class="nav">
+  <div id="main" class="nav" onclick="fullLogOut()">
       Sweater Weather
       <img  src="https://dumielauxepices.net/sites/default/files/clouds-clipart-simple-895336-3697499.png" width="100px" height="auto"/>
   </div>
 
   <ul>
-    <li id="slogan" class="nav">your favoritest forecast friend</li>
+    <li id="slogan" class="nav">your favorite<br>forecast<br>friend</li>
     <div style="float:right">
-    <li id="user" class="nav">Welcome
-    <button id="login-btn" class="nav" onclick="displayLogin()">Log In</button></li>
+    <li id="user">
+      <h4 class="nav">Welcome<h4>
+      <button id="login-btn" class="nav" onclick="displayLogin()">Log In</button>
+      <button id="register-btn" class="nav" onclick="displayRegister()">Register</button>
+    </li>
     </div>
   </ul>
 
