@@ -21,9 +21,21 @@
     </div>
   </ul>
 
-  <div id="display">
+  <div id="sweater-display" class="show">
     <img class="sweater" onclick="visitorLogin()"  src="assets/gray-sweater.png" alt="Sweater">
     <h6>Just visiting?  Click on the Sweater to begin</h6>
+  </div>
+
+  <div id="search" class="hidden">
+    <input id='location' type='text' placeholder='City, State'> <br> <button id='locationbutton' class='button' onclick='getForecast()'>Find Weather</button><br>
+  </div>
+
+  <div id="login" class="hidden">
+    <input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <button id='login-button' class='button' onclick='verifyLogin()'>Log In</button>
+  </div>
+
+  <div id="register" class="hidden">
+    <input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <input id='password-conf' type='text' placeholder='Password Confirmation'> <br> <button id='login-button' class='button' onclick='verifyRegistration()'>Register</button>
   </div>
 
   <div id="loaded-favorites">
