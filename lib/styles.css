@@ -76,7 +76,7 @@ button:hover {
   background-color: #b0228c;
 }
 
-.hidden {
+.hidden, div#favorite.hidden, div#email.hidden {
   display: none;
 }
 
@@ -84,7 +84,7 @@ button:hover {
   display: grid;
 }
 
-div#sweater-display {
+div#sweater-display, div#search, #login, #register {
   padding: 5px;
   opacity: 0.8;
   text-align: center;
