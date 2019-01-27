@@ -49,18 +49,21 @@
 	function displayLogin() {
 	  clearContents(["favorite", "forecast", "email", "loaded-favorites"]);
 	  deleteSession();
-	  document.getElementById("display").innerHTML = "<input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <button id='login-button' class='button' onclick='fullLogIn()'>Log In</button><br>";
+	  document.getElementById("display").innerHTML = "<input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <button id='login-button' class='button' onclick='verifyLogin()'>Log In</button>";
 	}
 
 	function visitorLogin() {
 	  displaySearch();
 	}
 
-	function fullLogIn() {
+	function verifyLogin() {
 	  var email = getValue("email");
 	  var password = getValue("password");
-	  displaySearch();
-	  logIn(email, password);
+	  if (email && password) {
+	    logIn(email, password);
+	  } else {
+	    alert("Please enter a username and password");
+	  }
 	}
 
 	function logIn(email, password) {
@@ -73,17 +76,21 @@
 	      storeSession(data, email, function () {
 	        setLogIn(email, function () {
 	          getFavorites(function () {
-	            displayForecastButtons();
+	            displaySearch(function () {
+	              displayForecastButtons();
+	            });
 	          });
 	        });
 	      });
+	    } else {
+	      alert("Invalid email and password.  Please try again");
 	    }
 	  };
 	  xhr.send();
 	}
 
 	function setLogIn(email, callback) {
-	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome, " + email + "! <button id='logout-btn' class='nav' onclick='fullLogOut()'>Log Out</button></li>";
+	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome, " + email + "! <button id='logout-btn' class='nav' onclick='logOut()'>Log Out</button></li>";
 	  callback();
 	}
 
@@ -109,8 +116,9 @@
 	  sessionStorage.clear();
 	}
 
-	function displaySearch() {
-	  document.getElementById("display").innerHTML = "<input id='location' type='text' placeholder='Type any location: Denver, CO'> <br> <button id='locationbutton' class='button' onclick='getForecast()'>Find Weather</button><br>";
+	function displaySearch(callback) {
+	  document.getElementById("display").innerHTML = "<input id='location' type='text' placeholder='City, State'> <br> <button id='locationbutton' class='button' onclick='getForecast()'>Find Weather</button><br>";
+	  callback();
 	}
 
 	function getFavoriteForecast() {
@@ -204,7 +212,7 @@
 	}
 
 	function displayFavorites(contents) {
-	  document.getElementById("loaded-favorites").innerHTML = "<select id='favorites-list'> " + contents + "</select><br> <button id='favoritebutton' class='button' onclick='getFavoriteForecast()'>Select Favoritest Location</button>";
+	  document.getElementById("loaded-favorites").innerHTML = "<select id='favorites-list'> " + contents + "</select><br> <button id='favoritebutton' class='button' onclick='getFavoriteForecast()'>Select Favorite Location</button>";
 	}
 
 	function formatForecast(data) {
@@ -212,22 +220,22 @@
 	  var currentDay = forecast.current_day;
 	  var hourly = currentDay.hourly;
 	  var daily = forecast.upcoming_days;
-	  document.getElementById("forecast").innerHTML = "<h1>" + forecast.location + "</h1>\n  <h2>Current Weather: " + currentDay.summary + "</h2>\n  <img class='icon' src=" + currentDay.icon + ".png>";
+	  document.getElementById("forecast").innerHTML = "<h1>" + forecast.location + "</h1>\n  <h2>Current Weather: " + currentDay.summary + "</h2>\n  <img class='icon' src=assets/" + currentDay.icon + ".png>";
 	}
 
-	function setLogOut() {
-	  document.getElementById("user").innerHTML = "<li id='user' class='nav'>Welcome <button id='logout-btn' class='nav' onclick='fullLogIn()'>Log In</button></li>";
+	function resetNavBar() {
+	  document.getElementById("user").innerHTML = "<li id='user'><h4 class='nav' onclick='logOut()'>Home<h4><button id='login-btn' class='nav' onclick='displayLogin()'>Log In</button><button id='register-btn' class='nav' onclick='displayRegister()'>Register</button></li>";
 	}
 
 	function setSweaterDisplay() {
-	  document.getElementById("display").innerHTML = "<img class='sweater' onclick='visitorLogin()'  src='gray-sweater.png' alt='Sweater'/>";
+	  document.getElementById("display").innerHTML = "<img class='sweater' onclick='visitorLogin()'  src='assets/gray-sweater.png' alt='Sweater'/> <h4>Just visiting?  Click on the Sweater to begin</h4>";
 	}
 
-	function fullLogOut() {
+	function logOut() {
 	  clearContents(["favorite", "forecast", "email", "loaded-favorites"]);
 	  setSweaterDisplay();
 	  deleteSession();
-	  setLogOut();
+	  resetNavBar();
 	}
 
 	function clearContents(tags) {
@@ -238,6 +246,39 @@
 
 	function clearSearch() {
 	  document.getElementById("location").value = "";
+	}
+
+	function displayRegister() {
+	  clearContents(["favorite", "forecast", "email", "loaded-favorites"]);
+	  deleteSession();
+	  document.getElementById("display").innerHTML = "<input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <input id='password-conf' type='text' placeholder='Password Confirmation'> <br> <button id='login-button' class='button' onclick='verifyRegistration()'>Register</button><br>";
+	}
+
+	function verifyRegistration() {
+	  var email = getValue("email");
+	  var pw = getValue("password");
+	  var pwConfirm = getValue("password-conf");
+	  if (email && pw && pwConfirm) {
+	    createUser(email, pw, pwConfirm);
+	  } else {
+	    alert("Please enter all fields before clicking the button");
+	  };
+	}
+
+	function createUser(email, pw, pwConfirm) {
+	  debugger;
+	  var xhr = new XMLHttpRequest();
+	  var url = "https://thawing-basin-85011.herokuapp.com/api/v1/users?email=" + email + "&password=" + pw + "&password_confirmation=" + pwConfirm;
+	  xhr.open("POST", url, true);
+	  xhr.onload = function () {
+	    if (this.status == 200) {
+	      displayLogin();
+	      alert("Your account is created.  Please log in");
+	    } else {
+	      alert("Please match you password and password confirmation.");
+	    }
+	  };
+	  xhr.send();
 	}
 
 /***/ })
