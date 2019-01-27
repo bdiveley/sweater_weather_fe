@@ -106,7 +106,7 @@ div#forecast {
   margin: auto;
 }
 
-input#location, #locationbutton, select#favorites-list, #favoritebutton, #login-button, #email, #password, #password-conf, #favorite {
+input#location, #locationbutton, select#favorites-list, #favoritebutton, #login-button, #email, #password, #password-conf, #favorite, #reg-email, #reg-password {
   font-size: 40px;
   width: 500px;
   text-align: center;
