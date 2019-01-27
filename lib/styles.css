@@ -12,7 +12,7 @@ ul {
   padding : 0px 0 10px 0;
   overflow: hidden;
   background-color: #00798c;
-  height: 120px;
+  height: 70px;
   text-align: left;
 }
 
@@ -24,9 +24,9 @@ li.nav {
 }
 
 h4.nav {
-  text-align: right;
-  padding : 10px 10px 10px 10px;
-
+  text-align: center;
+  padding : 0px;
+  margin: 0px;
 }
 
 h4.nav:hover {
@@ -51,11 +51,13 @@ h1, h2 {
   padding : 10px 20px 10px 10px;
 }
 
-#user {
+li#user {
   color: #13293d;
   font-size: 20px;
   color: white;
   padding : 0px 10px 10px 0;
+  height: 30px;
+  text-alight: center;
 }
 
 button {
