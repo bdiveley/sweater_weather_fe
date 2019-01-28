@@ -1,6 +1,6 @@
 body {
   background-color: #D3D3D3;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -35,6 +35,11 @@ h4.nav:hover {
 
 h1, h2, h6 {
   margin: 0px;
+  text-align: center;
+}
+
+h4 {
+  margin: 5px;
 }
 
 h5 {
@@ -84,7 +89,7 @@ button:hover {
   display: grid;
 }
 
-div#sweater-display, div#search, #login, #register {
+div#sweater-display, div#search, #login, #register, div#daily {
   padding: 5px;
   opacity: 0.8;
   text-align: center;
@@ -106,7 +111,7 @@ div#forecast {
   margin: auto;
 }
 
-input#location, #locationbutton, select#favorites-list, #favoritebutton, #login-button, #email, #password, #password-conf, #favorite, #reg-email, #reg-password {
+input#location, #locationbutton, select#favorites-list, #favoritebutton, #login-button, #email, #password, #password-conf, #favorite, #reg-email, #reg-password{
   font-size: 40px;
   width: 500px;
   text-align: center;
@@ -132,13 +137,34 @@ input#location {
   height: auto;
 }
 
+img.small-icon {
+  height: 50px;
+  margin: 0 auto;
+}
+
+
 #forecast-buttons, #loaded-favorites {
   text-align: center;
   margin: 15px;
 }
 
-#fave-button, #email-button {
+#fave-button, #email-button, #daily-button {
   width: 200px;
   background-color: #b0228c;
   display: inline-block;
+}
+
+#upcoming-week {
+  width: 100%;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  border-style: double;
+}
+
+div#day {
+  text-align: center;
+  background-color: black;
+  margin: 5px;
+  border: 5px;
 }

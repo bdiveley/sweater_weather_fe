@@ -48,16 +48,20 @@
 
 	function displayLogin() {
 	  deleteSession();
+	  hideForecastButtons();
 	  $("#login").show();
 	  $("#sweater-display").hide();
 	  $("#search").hide();
 	  $("#register").hide();
 	  $("#forecast").hide();
+	  $("#upcoming-week").hide();
 	}
 
 	function visitorLogin() {
 	  $("#sweater-display").hide();
 	  $("#search").show();
+	  $("#upcoming-week").hide();
+	  document.getElementById("location").value = "";
 	}
 
 	function verifyLogin() {
@@ -80,7 +84,7 @@
 	    $("#user-logout").show();
 	    storeSession(api_key, email, function () {
 	      getFavorites(function () {
-	        displayForecastButtons();
+	        //fix this functionality
 	      });
 	    });
 	  });
@@ -114,7 +118,14 @@
 	  if (sessionStorage.getItem('email')) {
 	    $("#favorite").show();
 	    $("#emails").show();
+	    $("#daily").show();
 	  }
+	}
+
+	function hideForecastButtons() {
+	  $("#favorite").hide();
+	  $("#emails").hide();
+	  $("#daily").hide();
 	}
 
 	function getForecastData() {
@@ -138,12 +149,28 @@
 	  var currentDay = forecast.current_day;
 	  var hourly = currentDay.hourly;
 	  var daily = forecast.upcoming_days;
+	  loadUpcomingWeek(daily);
 	  $("#forecast").show();
-	  document.getElementById("forecast").innerHTML = "<h1>" + forecast.location + "</h1>\n  <h2>Current Weather: " + currentDay.summary + "</h2>\n  <img class='icon' src=assets/" + currentDay.icon + ".png>";
+	  document.getElementById("forecast").innerHTML = "<h1>" + forecast.location + "</h1>\n  <h2>Current Weather: " + currentDay.summary + "</h2>\n  <h2>Feel likes " + forecast.current_day.apparent_temp + "&#176</h2>\n  <img class='icon' src=assets/" + currentDay.icon + ".png>\n  <h2>High Temp: " + forecast.current_day.high_temp + "&#176</h2>\n  <h2>Low Temp: " + forecast.current_day.low_temp + "&#176</h2>";
+	}
+
+	function loadUpcomingWeek(daily) {
+	  $("#daily-button").show();
+	  var dailyData = "";
+	  daily.forEach(function (day) {
+	    dailyData += "<div class='day'><h2>" + day.day_of_week + "</h2><h4>" + day.summary + "</h4><br><img class='small-icon' src=assets/" + day.icon + ".png></div>";
+	  });
+	  document.getElementById("upcoming-week").innerHTML = dailyData;
+	}
+
+	function dailyForecast() {
+	  $("#upcoming-week").toggle();
+	  $("#forecast").toggle();
 	}
 
 	function getFavoriteForecast() {
 	  currentLocation.location = getValue("favorites-list");
+	  $("#upcoming-week").hide();
 	  $("#favorite").hide();
 	  $("#emails").show();
 	  getForecastData();
@@ -180,6 +207,8 @@
 	  deleteSession();
 	  $("#sweater-display").show();
 	  $("#search").hide();
+	  $("#upcoming-week").hide();
+	  $("#daily").hide();
 	  $("#user-logout").hide();
 	  $("#register").hide();
 	  $("#login").hide();
@@ -192,6 +221,7 @@
 
 	function displayRegister() {
 	  deleteSession();
+	  hideForecastButtons();
 	  $("#sweater-display").hide();
 	  $("#login").hide();
 	  $("#search").hide();
