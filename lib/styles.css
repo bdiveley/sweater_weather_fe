@@ -1,6 +1,6 @@
 body {
   background-color: #D3D3D3;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -35,6 +35,11 @@ h4.nav:hover {
 
 h1, h2, h6 {
   margin: 0px;
+  text-align: center;
+}
+
+h4 {
+  margin: 5px;
 }
 
 h5 {
@@ -132,6 +137,11 @@ input#location {
   height: auto;
 }
 
+img.small-icon {
+  height: 50px;
+  margin: 0 auto;
+}
+
 
 #forecast-buttons, #loaded-favorites {
   text-align: center;
@@ -142,4 +152,19 @@ input#location {
   width: 200px;
   background-color: #b0228c;
   display: inline-block;
+}
+
+#upcoming-week {
+  width: 100%;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  border-style: double;
+}
+
+div#day {
+  text-align: center;
+  background-color: black;
+  margin: 5px;
+  border: 5px;
 }
