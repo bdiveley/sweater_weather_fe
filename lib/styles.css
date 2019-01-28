@@ -132,6 +132,7 @@ input#location {
   height: auto;
 }
 
+
 #forecast-buttons, #loaded-favorites {
   text-align: center;
   margin: 15px;
