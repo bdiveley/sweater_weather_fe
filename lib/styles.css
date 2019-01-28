@@ -33,8 +33,12 @@ h4.nav:hover {
   color: #b0228c;
 }
 
-h1, h2 {
+h1, h2, h6 {
   margin: 0px;
+}
+
+h5 {
+  margin: 10px;
 }
 
 #main {
@@ -51,7 +55,7 @@ h1, h2 {
   padding : 10px 20px 10px 10px;
 }
 
-li#user {
+li#user-login, li#user-logout {
   color: #13293d;
   font-size: 20px;
   color: white;
@@ -72,7 +76,15 @@ button:hover {
   background-color: #b0228c;
 }
 
-div#display {
+.hidden, div#favorite.hidden, div#email.hidden {
+  display: none;
+}
+
+.show {
+  display: grid;
+}
+
+div#sweater-display, div#search, #login, #register {
   padding: 5px;
   opacity: 0.8;
   text-align: center;
@@ -94,7 +106,7 @@ div#forecast {
   margin: auto;
 }
 
-input#location, #locationbutton, select#favorites-list, #favoritebutton, #login-button, #email, #password, #password-conf, #favorite {
+input#location, #locationbutton, select#favorites-list, #favoritebutton, #login-button, #email, #password, #password-conf, #favorite, #reg-email, #reg-password {
   font-size: 40px;
   width: 500px;
   text-align: center;

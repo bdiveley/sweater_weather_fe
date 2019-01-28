@@ -13,26 +13,46 @@
   <ul>
     <li id="slogan" class="nav">your favorite forecast friend</li>
     <div style="float:right">
-    <li id="user">
-      <h4 class="nav" onclick="logOut()">Home<h4>
-      <button id="login-btn" class="nav" onclick="displayLogin()">Log In</button>
-      <button id="register-btn" class="nav" onclick="displayRegister()">Register</button>
-    </li>
+      <li id="user-login">
+        <h4 class="nav" onclick="logOut()">Home<h4>
+        <button id="login-btn" class="nav" onclick="displayLogin()">Log In</button>
+        <button id="register-btn" class="nav" onclick="displayRegister()">Register</button>
+      </li>
+
+      <li id='user-logout' class="hidden">
+        <h5> Welcome! </h5>
+        <button id='logout-btn' class='nav' onclick='logOut()'>Log Out</button>
+      </li>
     </div>
   </ul>
 
-  <div id="display">
+  <div id="sweater-display">
     <img class="sweater" onclick="visitorLogin()"  src="assets/gray-sweater.png" alt="Sweater">
-    <h4>Just visiting?  Click on the Sweater to begin</h4>
+    <h6>Just visiting?  Click on the Sweater to begin</h6>
+  </div>
+
+  <div id="login" class="hidden">
+    <input id='email' type='text' placeholder='Email'> <br> <input id='password' type='text' placeholder='Password'> <br> <button id='login-button' class='button' onclick='verifyLogin()'>Log In</button>
+  </div>
+
+  <div id="search" class="hidden">
+    <input id='location' type='text' placeholder='City, State'> <br> <button id='locationbutton' class='button' onclick='getForecast()'>Find Weather</button><br>
+  </div>
+
+  <div id="register" class="hidden">
+    <input id='reg-email' type='text' placeholder='Email'> <br> <input id='reg-password' type='text' placeholder='Password'> <br> <input id='password-conf' type='text' placeholder='Password Confirmation'> <br> <button id='login-button' class='button' onclick='verifyRegistration()'>Register</button>
   </div>
 
   <div id="loaded-favorites">
   </div>
 
   <div id="forecast-buttons">
-    <div id="favorite">
+    <div id="favorite" class="hidden">
+      <button id='fave-button' onclick='postNewFavorite()'>Add to Favorites
+      </button>
     </div>
-    <div id="email">
+    <div id="emails" class="hidden">
+      <button id='email-button' onclick='sendEmail()'>Email My Forecast</button>
     </div>
   </div>
 
@@ -44,5 +64,6 @@
   </script>
   <script src="main.bundle.js"></script>
   <script src="lib/index.js"></script>
+  <script src="lib/ajax.js"></script>
 </body>
 </html>
