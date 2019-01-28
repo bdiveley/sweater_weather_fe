@@ -35,6 +35,10 @@ Sweater Weather is a weather forecasting delivery application.  Sweater Weather 
 * visit http://localhost:3000 to visit the site in development
 
 # Known Issues
+* A user can favorite the same location more than once
+* All input fields need to be cleared out at logical points, they currently do not reset unless a user click the Logout button * More foreasting data is available to be displayed
+* Formatting can be improved to reduce user's need to scroll on the page
+* Load time should be improved with back-end caching
 
 # Project Board
 https://github.com/bdiveley/sweater_weather_fe/projects/1
